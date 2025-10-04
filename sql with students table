@@ -1,0 +1,101 @@
+SELECT * FROM college.students;
+
+
+use camp;
+
+show tables;
+
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Department VARCHAR(50),
+    Salary DECIMAL(10,2),
+    HireDate DATE
+);
+
+CREATE TABLE Project (
+    ProjectID INT PRIMARY KEY,
+    ProjectName VARCHAR(100),
+    StartDate DATE,
+    EndDate DATE,
+    EmpID INT,
+    FOREIGN KEY (EmpID) REFERENCES Employee(EmpID)
+);
+
+
+
+-- Insert 10 employees
+INSERT INTO Employee VALUES (1, 'Aditya', 'Gadekar', 'IT', 60000.00, '2022-05-10');
+INSERT INTO Employee VALUES (2, 'Riya', 'Sharma', 'HR', 45000.00, '2023-01-15');
+INSERT INTO Employee VALUES (3, 'Karan', 'Patil', 'Finance', 55000.00, '2021-11-20');
+INSERT INTO Employee VALUES (4, 'Sneha', 'Joshi', 'IT', 70000.00, '2020-07-01');
+INSERT INTO Employee VALUES (5, 'Amit', 'Deshmukh', 'Sales', 48000.00, '2023-03-12');
+INSERT INTO Employee VALUES (6, 'Neha', 'Kulkarni', 'Marketing', 52000.00, '2022-08-05');
+INSERT INTO Employee VALUES (7, 'Rahul', 'Singh', 'HR', 46000.00, '2021-12-18');
+INSERT INTO Employee VALUES (8, 'Pooja', 'Verma', 'Finance', 58000.00, '2020-09-25');
+INSERT INTO Employee VALUES (9, 'Saurabh', 'Yadav', 'IT', 75000.00, '2019-06-14');
+INSERT INTO Employee VALUES (10, 'Meena', 'Rathod', 'Sales', 50000.00, '2022-10-21');
+
+select *from employee;
+
+-- Insert 10 projects linked to employees
+INSERT INTO Project VALUES (101, 'Library Management System', '2023-02-01', '2023-07-31', 1);
+INSERT INTO Project VALUES (102, 'Recruitment Portal', '2023-03-15', '2023-08-30', 2);
+INSERT INTO Project VALUES (103, 'Payroll Management', '2022-06-10', '2022-12-20', 3);
+INSERT INTO Project VALUES (104, 'E-Commerce Website', '2021-09-01', '2022-03-15', 4);
+INSERT INTO Project VALUES (105, 'Sales Dashboard', '2023-04-05', '2023-10-10', 5);
+INSERT INTO Project VALUES (106, 'Marketing Campaign Tracker', '2022-07-12', '2023-01-18', 6);
+INSERT INTO Project VALUES (107, 'Employee Onboarding System', '2021-11-01', '2022-05-25', 7);
+INSERT INTO Project VALUES (108, 'Financial Audit Tool', '2020-10-20', '2021-03-30', 8);
+INSERT INTO Project VALUES (109, 'Hospital Management System', '2019-08-01', '2020-02-28', 9);
+INSERT INTO Project VALUES (110, 'Customer Relationship App', '2022-11-11', '2023-05-22', 10);
+
+select *from project;
+
+select *from employee  order by FirstName desc ;
+
+select FirstName,salary
+from employee where salary = (select max(salary) 
+from employee);
+
+select *from employee where salary > 50000;
+
+select FirstName as s from employee;
+
+select count(*) from employee;
+
+alter table employee add column satus varchar(30);
+select *from employee;
+select *from project;
+
+select FirstName ,ProjectName from employee join project  on employee.EmpId=project.ProjectID;
+
+select *from employee where salary between 10000 and 50000;
+
+select *from employee;
+select *from employee where salary in(45000,60000,52000);
+
+SELECT e.FirstName, p.ProjectName
+FROM Employee e
+JOIN Project p ON e.EmpID = p.EmpID;
+
+SELECT *
+FROM Employee e
+LEFT JOIN Project p 
+    ON e.EmpID = p.EmpID;
+    
+ 
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE Employee
+SET Salary = Salary * 50
+WHERE EmpID in(1,4);
+
+ select *from employee;
+    
+
+
+
+
+
