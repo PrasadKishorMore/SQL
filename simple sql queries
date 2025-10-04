@@ -1,0 +1,87 @@
+show tables;
+
+drop table course;
+drop table students;
+
+-- create tables
+
+create table course(
+                    c_id int primary key,
+                    c_name varchar(20)
+                    );
+                    
+                    
+insert into course()
+            values(1,"Bsc"),
+				  (2,"Msc");
+                  
+select *from course;                  
+
+create table stud(
+                 id int primary key ,
+                 name varchar(20),
+                 rollno int,
+                 c_id int ,
+                 foreign key(c_id) 
+                 references course(c_id)
+                 );
+        
+ -- CRUD   
+                 
+insert into stud()values(1,"prasad",1,2),(2,"kiran",2,1);
+select *from stud;    
+
+  insert into stud()values(3,"aksh",3,2);    
+  
+  insert into stud()values(4,"pavan",4,1),(5,"laxman",5,2);
+  select *from stud;
+  
+  update stud set name="akash" where id=3;
+  select *from stud;
+
+select name , id from stud;
+
+select *from course;
+insert into course()values(3,"Bcom"),(4,"mcom");
+
+-- joins
+
+select name,c_name from stud join course on stud.id = course.c_id;
+select *from stud left join course on stud.id = course.c_id;
+select *from course left join stud on course.c_id=stud.id;
+
+select *from stud right join course on stud.id=course.c_id;
+select *from course right join stud on course.c_id=stud.id;
+
+select *from stud cross join course on stud.id=course.c_id;
+select *from course join stud on course.c_id = stud.id;
+
+select *from stud left outer join course on stud.id = course.c_id;
+select *from stud right outer join course on stud.id = course.c_id;
+
+select *from stud self join course on  stud.id = course.c_id;
+
+
+select distinct *from stud;
+insert into stud() value(6,"prasad",6,1);
+select name from stud group by(name);
+
+alter table stud add column age int ;
+
+update stud
+set age = 23
+where c_id =1;
+
+select *from stud;
+
+update stud 
+set age = 25
+where c_id= 2;
+
+select *from stud;
+
+
+select *from stud where c_id=1;
+
+select *from stud where age>23;
+select *from stud where rollno between 1 and 3;
