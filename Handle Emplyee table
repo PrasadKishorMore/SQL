@@ -1,0 +1,65 @@
+-- SELECT * FROM emp.emp;
+
+-- show databases;
+
+--create database Demo;
+--use Demo;
+
+--CREATE TABLE employee (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    department VARCHAR(50),
+    salary DECIMAL(10, 2)
+);
+
+--INSERT INTO employee (id, name, age, department, salary) VALUES
+(1, 'Alice Smith',      30, 'HR',       50000.00),
+(2, 'Bob Johnson',      35, 'IT',       60000.00),
+(3, 'Charlie Lee',      28, 'Finance',  55000.00),
+(4, 'Diana King',       40, 'Marketing',58000.00),
+(5, 'Ethan Brown',      45, 'IT',       70000.00),
+(6, 'Fiona Davis',      32, 'HR',       52000.00),
+(7, 'George Wilson',    29, 'Finance',  53000.00),
+(8, 'Hannah Martin',    31, 'IT',       62000.00),
+(9, 'Ian Thompson',     38, 'Marketing',59000.00),
+(10,'Jasmine Patel',    27, 'HR',       48000.00);
+
+--SELECT * 
+FROM employee 
+WHERE department = 'HR';
+
+--select *
+from employee
+where salary > 60000;
+
+select *
+from employee
+where age > 30;
+
+select *from employee e where e.salary = (select max(salary) from employee);
+
+select department, count(*) 
+from employee
+group by(department);
+
+select avg(salary) from employee;
+
+select *from employee order by salary desc;
+
+
+select distinct department from employee;
+
+SELECT MAX(salary) AS second_highest_salary
+FROM employee
+WHERE salary < (
+    SELECT MAX(salary)
+    FROM employee
+);
+
+select *from employee where salary between 50000 and 60000;
+
+select *from employee where age between 20 and 30;
+
+
+
