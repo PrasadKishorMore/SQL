@@ -1,0 +1,11 @@
+*** JOIN***
+select c.c_name,s.s_name from course c join students s on c.c_id = s.s_id;
+
+** LEFT JOIN ***
+select *from students s left join course c on  c.c_id = s.s_id;
+
+*** RIGHT JOIN ***
+select *from students s right join course c on c.c_id = s.s_id;
+
+**CROSS JOIN ***
+select *from students s cross join course c on c.c_id = s.s-id;
