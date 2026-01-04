@@ -1,0 +1,9 @@
+select count(*) from students;
+
+select max(s_age) from students;
+
+select min(s_age) from students;
+
+select avg(s_age) from students;
+
+select sum(s_age) from students;
